@@ -14,11 +14,11 @@ export const TableFlightsAdminView = ({ flights }) => {
   }
 
   const cancelFlight = (id) => {
-
+    console.log(id)
   }
 
   const completFlight = (id) => {
-
+    console.log(id)
   }
   
 
