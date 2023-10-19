@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { aproveFlight } from './../services/apiFlights.js'
+// import { aproveFlight } from './../services/apiFlights.js'
 import { useDispatch } from 'react-redux';
 import { getFlights } from './../../store/slices/flights' 
 import { useEffect } from 'react';
@@ -24,11 +24,11 @@ export const TableFlightsAdminView = ({ flights, socket }) => {
   
 
   const cancelFlight = (id) => {
-
+    console.log(id)
   }
 
   const completFlight = (id) => {
-
+    console.log(id)
   }
   
 

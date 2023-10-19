@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { getFlights } from "../../store/slices/flights"
 import { useSocket } from './../../common/hooks/useSocket'
-import { setSocket } from "../../store/slices/sockets";
+// import { setSocket } from "../../store/slices/sockets";
 
 export const FlightsAdminPage = () => {
 
