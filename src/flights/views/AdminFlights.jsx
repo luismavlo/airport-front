@@ -1,7 +1,8 @@
 import { TableFlightsAdminView } from './../components/TableFlightsAdminView'
 import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types';
 
-export const AdminFlights = () => {
+export const AdminFlights = ({ socket }) => {
 
   const { isLoading, flights } = useSelector(state => state.flights)
 
@@ -11,9 +12,13 @@ export const AdminFlights = () => {
       {
         isLoading 
           ? "Cargando..." 
-          : <TableFlightsAdminView flights={flights} />
+          : <TableFlightsAdminView flights={flights} socket={socket} />
       }
 
     </section>
   )
+}
+
+AdminFlights.propTypes = {
+  socket: PropTypes.any,
 }

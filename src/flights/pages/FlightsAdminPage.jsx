@@ -3,17 +3,19 @@ import { FlightsView, AdminFlights, CreateFlightView } from './../views'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { getFlights } from "../../store/slices/flights"
+import { useSocket } from './../../common/hooks/useSocket'
+import { setSocket } from "../../store/slices/sockets";
 
 export const FlightsAdminPage = () => {
 
   const [showView, setShowView] = useState('start');
-  
+  const { socket } = useSocket("http://localhost:3000");
+
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch( getFlights()  )
-  }, [dispatch])
-  
+  }, [dispatch]);  
 
   const navigate = useNavigate();
 
@@ -40,7 +42,7 @@ export const FlightsAdminPage = () => {
 
         {
           showView === 'adminFlights'
-          && <AdminFlights />
+          && <AdminFlights socket={socket} />
         }
 
         {

@@ -2,16 +2,26 @@ import PropTypes from 'prop-types';
 import { aproveFlight } from './../services/apiFlights.js'
 import { useDispatch } from 'react-redux';
 import { getFlights } from './../../store/slices/flights' 
+import { useEffect } from 'react';
 
-export const TableFlightsAdminView = ({ flights }) => {
+export const TableFlightsAdminView = ({ flights, socket }) => {
 
   const dispatch = useDispatch()
 
   const startAproveFlight = async(id) => {
-    const result = await aproveFlight(id)
+    // const result = await aproveFlight(id)
+    socket.emit("change-status-flight", "soy una data viajadora")
+    console.log(id)
     dispatch( getFlights() )
-    console.log(result)
+
   }
+
+  useEffect(() => {
+    socket.on("render-change-status", (data) => {
+      console.log(data)
+    })
+  }, [socket])
+  
 
   const cancelFlight = (id) => {
 
@@ -60,4 +70,5 @@ export const TableFlightsAdminView = ({ flights }) => {
 
 TableFlightsAdminView.propTypes = {
   flights: PropTypes.array,
+  socket: PropTypes.any,
 }

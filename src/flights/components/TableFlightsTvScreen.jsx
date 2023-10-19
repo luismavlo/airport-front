@@ -2,10 +2,19 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { getFlights } from '../../store/slices/flights';
+import { useSocket } from '../../common/hooks/useSocket';
 
 export const TableFlightsTvScreen = () => {
 
   const dispatch = useDispatch()
+  const { socket } = useSocket("http://localhost:3000");
+
+  useEffect(() => {
+    socket.on("render-change-status", (data) => {
+      console.log('data desde el tv: ', data)
+    })
+  }, [socket])
+  
 
   useEffect(() => {
     dispatch( getFlights() )
